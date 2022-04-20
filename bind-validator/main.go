@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"reflect"
 
 	"github.com/go-playground/locales/zh"
 	ut "github.com/go-playground/universal-translator"
@@ -32,19 +33,25 @@ func Translate(err error) error {
 var trans ut.Translator
 
 type Student struct {
-	Name string `form:"name" validate:"required" json:"name,omitempty"`
-	Age  int    `form:"age,omitempty" validate:"gte=18,lte=30" json:"age,omitempty"`
+	Name string `form:"name" validate:"required" label:"姓名" json:"name,omitempty"`
+	Age  int    `form:"age,omitempty" validate:"gte=18,lte=30" label:"年龄" json:"age,omitempty"`
 }
 
 func main() {
 	app := bytego.New()
+	app.Debug(true)
 	app.Use(logger.New())
 
 	// validator with translation
-	validator1 := validator.New()
+	validator := validator.New()
 	trans, _ = ut.New(zh.New()).GetTranslator("zh")
-	_ = translation.RegisterDefaultTranslations(validator1, trans)
-	app.Validator(validator1.Struct, Translate)
+	_ = translation.RegisterDefaultTranslations(validator, trans)
+	//register a tag as filed name
+	validator.RegisterTagNameFunc(func(fld reflect.StructField) string {
+		name := fld.Tag.Get("label")
+		return name
+	})
+	app.Validator(validator.Struct, Translate)
 
 	// simple validator
 	// app.Validator(validator.New().Struct)
