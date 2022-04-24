@@ -11,7 +11,7 @@ func main() {
 	app.Render(bytego.NewDefaultTemplate("views/*.html"))
 
 	app.GET("/", func(c *bytego.Ctx) error {
-		return c.Render(200, "hello", "world")
+		return c.View(200, "hello", "world")
 	})
 
 	_ = app.Run(":8080")

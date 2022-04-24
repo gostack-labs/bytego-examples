@@ -6,7 +6,7 @@ require (
 	github.com/go-playground/locales v0.14.0
 	github.com/go-playground/universal-translator v0.18.0
 	github.com/go-playground/validator/v10 v10.10.1
-	github.com/gostack-labs/bytego v0.0.0-20220424162513-fe97bf247a41
+	github.com/gostack-labs/bytego v0.0.0-20220424164819-f0a21b32afa6
 )
 
 require (
