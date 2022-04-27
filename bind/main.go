@@ -41,11 +41,11 @@ func main() {
 		return c.String(200, "hello, world!")
 	})
 
-	//curl -d '{"name":"a","age":22}' -H 'content-type:application/json' http://localhost:8080/bind/student/1
-	//curl -d '<student><name>test</name><age>18</age></student>' -H 'content-type:application/xml' http://localhost:8080/bind/student/1
-	//curl -d 'formname=test&age=18&sch.schname=aa' -H 'content-type:application/x-www-form-urlencoded' http://localhost:8080/bind/student/1
-	//curl -d 'formname=test&age=18&sch.schname=aa'  http://localhost:8080/bind/student/1
-	//curl -d 'formname=test&age=18&sch.schname=aa&cityname=hz&jobname=programer&parent.name=pname&parent.parent.name=ppname&colors[]=1&colors[]=2'  http://localhost:8080/bind/student/1
+	//curl -d '{"name":"a","age":22}' -H 'content-type:application/json' http://localhost:8000/bind/student/1
+	//curl -d '<student><name>test</name><age>18</age></student>' -H 'content-type:application/xml' http://localhost:8000/bind/student/1
+	//curl -d 'formname=test&age=18&sch.schname=aa' -H 'content-type:application/x-www-form-urlencoded' http://localhost:8000/bind/student/1
+	//curl -d 'formname=test&age=18&sch.schname=aa'  http://localhost:8000/bind/student/1
+	//curl -d 'formname=test&age=18&sch.schname=aa&cityname=hz&jobname=programer&parent.name=pname&parent.parent.name=ppname&colors[]=1&colors[]=2'  http://localhost:8000/bind/student/1
 	app.POST("/bind/student/:id", func(c *bytego.Ctx) error {
 		var s Student
 		if err := c.Bind(&s); err != nil {
@@ -54,7 +54,5 @@ func main() {
 		return c.JSON(200, s)
 	})
 
-	if err := app.Run(":8080"); err != nil {
-		log.Fatal(err)
-	}
+	log.Fatal(app.Run(":8000"))
 }

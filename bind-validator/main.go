@@ -51,12 +51,12 @@ func main() {
 		name := fld.Tag.Get("label")
 		return name
 	})
-	app.Validator(validator.Struct, Translate)
+	app.SetValidator(validator.Struct, Translate)
 
 	// simple validator
 	// app.Validator(validator.New().Struct)
 
-	//curl -d 'name=&age=60'  http://localhost:8080/
+	//curl -d 'name=&age=60'  http://localhost:8000/
 	app.POST("/", func(c *bytego.Ctx) error {
 		var s Student
 		if err := c.Bind(&s); err != nil {
@@ -65,7 +65,5 @@ func main() {
 		return c.JSON(200, s)
 	})
 
-	if err := app.Run(":8080"); err != nil {
-		log.Fatal(err)
-	}
+	log.Fatal(app.Run(":8000"))
 }

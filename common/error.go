@@ -5,6 +5,7 @@ type CommonError struct {
 	Code int         `json:"code"`
 	Msg  string      `json:"msg,omitempty"`
 	Data interface{} `json:"data,omitempty"`
+	err  error
 }
 
 func (e CommonError) ErrCode() int {

@@ -10,9 +10,14 @@ import (
 func main() {
 	app := bytego.New()
 	app.Use(logger.New())
-	app.SetRender(bytego.NewTemplate("views/*.html"))
+	app.Static("/public", "./public/")
 	app.GET("/", func(c *bytego.Ctx) error {
-		return c.View(200, "hello", "world")
+		return c.String(200, "hello, world!")
 	})
+	g := app.Group("/group")
+	g.GET("/", func(c *bytego.Ctx) error {
+		return c.String(200, "hello, group")
+	})
+	g.Static("/public", "./public/")
 	log.Fatal(app.Run(":8000"))
 }
