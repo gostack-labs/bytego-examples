@@ -1,26 +1,24 @@
 package common
 
-//CommonError
-type CommonError struct {
+type result struct {
 	Code int         `json:"code"`
 	Msg  string      `json:"msg,omitempty"`
 	Data interface{} `json:"data,omitempty"`
-	err  error
 }
 
-func (e CommonError) ErrCode() int {
+func (e result) ErrCode() int {
 	return e.Code
 }
-func (e CommonError) Error() string {
+func (e result) Error() string {
 	return e.Msg
 }
 
-func NewCommonError(code int, msg string, data ...interface{}) *CommonError {
+func NewResult(code int, msg string, data ...interface{}) *result {
 	var d interface{}
 	if len(data) > 0 {
 		d = data[0]
 	}
-	return &CommonError{
+	return &result{
 		Code: code,
 		Msg:  msg,
 		Data: d,

@@ -9,13 +9,13 @@ import (
 	"github.com/go-playground/validator/v10"
 	translation "github.com/go-playground/validator/v10/translations/zh"
 	"github.com/gostack-labs/bytego"
-	"github.com/gostack-labs/bytego-examples/common"
+	"github.com/gostack-labs/bytego-examples/common/xresult"
 	"github.com/gostack-labs/bytego/middleware/logger"
 )
 
 func Translate(err error) error {
 	if validationErrors, ok := err.(validator.ValidationErrors); !ok {
-		return common.NewCommonError(10001, err.Error())
+		return xresult.Fail(10001, err.Error())
 	} else {
 		var ret string
 		var errCount int = len(validationErrors)
@@ -26,7 +26,7 @@ func Translate(err error) error {
 				ret += e.Translate(trans) + ";"
 			}
 		}
-		return common.NewCommonError(10002, ret)
+		return xresult.Fail(10002, ret)
 	}
 }
 

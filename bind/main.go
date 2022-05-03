@@ -4,7 +4,7 @@ import (
 	"log"
 
 	"github.com/gostack-labs/bytego"
-	"github.com/gostack-labs/bytego-examples/common"
+	"github.com/gostack-labs/bytego-examples/common/xresult"
 	"github.com/gostack-labs/bytego/middleware/logger"
 )
 
@@ -49,9 +49,9 @@ func main() {
 	app.POST("/bind/student/:id", func(c *bytego.Ctx) error {
 		var s Student
 		if err := c.Bind(&s); err != nil {
-			return common.NewCommonError(1, err.Error())
+			return xresult.Fail(400, err.Error())
 		}
-		return c.JSON(200, s)
+		return c.JSON(200, xresult.Success(s))
 	})
 
 	log.Fatal(app.Run(":8000"))
