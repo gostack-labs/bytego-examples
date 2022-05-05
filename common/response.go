@@ -1,24 +1,24 @@
 package common
 
-type result struct {
+type response struct {
 	Code int         `json:"code"`
 	Msg  string      `json:"msg,omitempty"`
 	Data interface{} `json:"data,omitempty"`
 }
 
-func (e result) ErrCode() int {
+func (e response) ErrCode() int {
 	return e.Code
 }
-func (e result) Error() string {
+func (e response) Error() string {
 	return e.Msg
 }
 
-func NewResult(code int, msg string, data ...interface{}) *result {
+func NewResponse(code int, msg string, data ...interface{}) *response {
 	var d interface{}
 	if len(data) > 0 {
 		d = data[0]
 	}
-	return &result{
+	return &response{
 		Code: code,
 		Msg:  msg,
 		Data: d,
