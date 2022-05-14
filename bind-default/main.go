@@ -15,11 +15,11 @@ type City struct {
 	CityName string `form:"cityname"`
 }
 type WantJob struct {
-	JobName string `form:"jobname"`
+	JobName string
 }
 type People struct {
-	Name   string `form:"name,omitempty"`
-	Parent *People
+	Name   string  `json:"name,omitempty"`
+	Parent *People `json:"parent,omitempty"`
 }
 type Student struct {
 	Name   string `xml:"name,omitempty" form:"formname"`
@@ -48,6 +48,41 @@ func main() {
 	//curl -d 'formname=test&age=18&sch.schname=aa&cityname=hz&jobname=programer&parent.name=pname&parent.parent.name=ppname&colors[]=1&colors[]=2'  http://localhost:8000/bind/student/1
 	app.POST("/bind/student/:id", func(c *bytego.Ctx) error {
 		var s Student
+		if err := c.Bind(&s); err != nil {
+			return xresult.Fail(400, err.Error())
+		}
+		return c.JSON(200, xresult.Success(s))
+	})
+	type DefaultA struct {
+		DemoA string `default:"demo1"`
+	}
+	type DefaultB struct {
+		DemoB string `default:"demo2"`
+	}
+	type DefaultC struct {
+		DemoC string `default:"demo3"`
+	}
+	type DefaultD struct {
+		DemoD string `default:"demo4"`
+	}
+	type Default struct {
+		Int      int    `form:"int" default:"5"`
+		String   string `form:"string" default:"string1"`
+		UInt     uint   `form:"uint" default:"11"`
+		Int32    int32  `default:"32"`
+		Int64    int64  `default:"64"`
+		Inta     *int   `default:"65"`
+		DefaultA DefaultA
+		DefaultB
+		DefaultC *DefaultC `default:"new"`
+		*DefaultD
+		Slice       []int    `default:"1,2,3"`
+		StringSlice []string `default:"a,b,c"`
+	}
+
+	// curl -d 'int=10'  http://localhost:8000/bind/default/1
+	app.POST("/bind/default/:id", func(c *bytego.Ctx) error {
+		var s Default
 		if err := c.Bind(&s); err != nil {
 			return xresult.Fail(400, err.Error())
 		}
