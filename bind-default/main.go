@@ -34,6 +34,7 @@ func main() {
 		Int32    int32  `default:"32"`
 		Int64    int64  `default:"64"`
 		Inta     *int   `default:"65"`
+		Bool     bool   `default:"true"`
 		DefaultA DefaultA
 		DefaultB
 		DefaultC *DefaultC `default:"new"`

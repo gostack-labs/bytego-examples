@@ -14,6 +14,10 @@ github.com/gostack-labs/bytego v0.0.0-20220514114608-2a6f8a54e798 h1:vWEidDq9JDG
 github.com/gostack-labs/bytego v0.0.0-20220514114608-2a6f8a54e798/go.mod h1:MRTgGMfGAa/OEvf9R3XSV5CNTDO0mtSbuHHg3WxvUDg=
 github.com/gostack-labs/bytego v0.0.0-20220514125925-cf1caa6926ac h1:Q4e5YyM2i5kqeiFJFb28O2+yhDbdyM/db6zluPzHfqI=
 github.com/gostack-labs/bytego v0.0.0-20220514125925-cf1caa6926ac/go.mod h1:MRTgGMfGAa/OEvf9R3XSV5CNTDO0mtSbuHHg3WxvUDg=
+github.com/gostack-labs/bytego v0.0.0-20220515132827-2d5d3087746e h1:O9BtRSrI/aDT+MA6IGrp8uSVN5VZcsmljauXu1HmLLc=
+github.com/gostack-labs/bytego v0.0.0-20220515132827-2d5d3087746e/go.mod h1:MRTgGMfGAa/OEvf9R3XSV5CNTDO0mtSbuHHg3WxvUDg=
+github.com/gostack-labs/bytego v0.0.0-20220518102905-4e4b678886c4 h1:N1/bblB+6793PDP6rsf+7uJudsZsdVp5cJdD7BxbNZA=
+github.com/gostack-labs/bytego v0.0.0-20220518102905-4e4b678886c4/go.mod h1:MRTgGMfGAa/OEvf9R3XSV5CNTDO0mtSbuHHg3WxvUDg=
 github.com/kr/pretty v0.1.0/go.mod h1:dAy3ld7l9f0ibDNOQOHHMYYIIbhfbHSm3C4ZsoJORNo=
 github.com/kr/pretty v0.2.1/go.mod h1:ipq/a2n7PKx3OHsz4KJII5eveXtPO4qwEXGdVfWzfnI=
 github.com/kr/pretty v0.3.0/go.mod h1:640gp4NfQd8pI5XOwp5fnNeVWj67G7CFk/SaSQn7NBk=
